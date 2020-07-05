@@ -6,7 +6,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ViewportScreens } from '../../models/viewport-screens.model';
 import { IfViewportSizeService } from '../../services/if-viewport-size.service';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,23 +14,23 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class IfViewportSizeDirective implements OnInit {
   private ngUnsubscribe: Subject<void> = new Subject();
-  viewportScreen: ViewportScreens;
+  viewportScreen: string;
 
   @Input()
-  set ifViewportSize(value: ViewportScreens) {
+  set ifViewportSize(value: string) {
     this.viewContainerRef.clear();
     this.viewportScreen = value;
   }
   constructor(
-    private templateRef: TemplateRef<any>,
     private viewContainerRef: ViewContainerRef,
+    private templateRef: TemplateRef<any>,
     private ifViewportSizeService: IfViewportSizeService
   ) {}
 
   ngOnInit(): void {
     this.ifViewportSizeService.viewportScreenType
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((viewPortScreen: ViewportScreens) => {
+      .subscribe((viewPortScreen: string) => {
         this.viewContainerRef.clear();
 
         if (this.viewportScreen === viewPortScreen) {

@@ -1,5 +1,1 @@
-export enum ViewportScreens {
-  small = 'small',
-  medium  = 'medium',
-  large = 'large'
-}
+export const ViewportScreens = 'small' || 'medium' || 'large';
