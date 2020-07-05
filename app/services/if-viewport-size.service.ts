@@ -34,6 +34,7 @@ export class IfViewportSizeService implements OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   changeWindowSize(event) {
+    console.log(event.target.innerWidth);
     this.setViewportSize(event.target.innerWidth);
   }
 
