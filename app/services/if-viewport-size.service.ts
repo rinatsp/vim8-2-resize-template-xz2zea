@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { ViewportScreens } from '../models/viewport-screens.model';
 import { APP_CONFIG } from '../configs/app.config';
+import {IConfig} from "../models/config.model";
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +32,7 @@ export class IfViewportSizeService implements OnDestroy {
 
   viewportScreenType: Observable<string>;
 
-  @HostListener('windows:resize', ['$event'])
+  @HostListener('window:resize', ['$event'])
   changeWindowSize(event) {
     this.setViewportSize(event.target.innerWidth);
   }
